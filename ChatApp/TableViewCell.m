@@ -13,6 +13,9 @@
 @synthesize lblContactName = _lblContactName;
 @synthesize lblContactMsg = _lblContactMsg;
 @synthesize lblTime = _lblTime;
+@synthesize lblCount = _lblCount;
+@synthesize imgCountBG = _imgCountBG;
+@synthesize imgContact = _imgContact;
 
 - (void)awakeFromNib {
     [super awakeFromNib];

@@ -16,7 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *lblContactMsg;
 @property (weak, nonatomic) IBOutlet UILabel *lblTime;
 @property (weak, nonatomic) IBOutlet UIImageView *imgContact;
-
+@property (weak, nonatomic) IBOutlet UIImageView *imgCountBG;
+@property (weak, nonatomic) IBOutlet UILabel *lblCount;
 
 @end
 

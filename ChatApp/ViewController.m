@@ -26,17 +26,18 @@ NSArray *arrTemp;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    //Dummy data for tableview
     arrTemp = @[
     @{@"Name" : @"Alex",
-      @"Msg" : @"test",
+      @"Msg" : @"Typing...",
       @"Time" : @"11:30",
       @"Profile" : @"profile1.png"},
     @{@"Name" : @"Alexander",
-      @"Msg" : @"test",
+      @"Msg" : @"What's new?",
       @"Time" : @"11:30",
       @"Profile" : @"profile2.png"},
     @{@"Name" : @"Alpha",
-      @"Msg" : @"test",
+      @"Msg" : @"How are you",
       @"Time" : @"11:30",
       @"Profile" : @"profile3.png"},
     @{@"Name" : @"Alsec",
@@ -90,15 +91,17 @@ NSArray *arrTemp;
     UICollectionViewCell *cell = [self.collectionViewContacts dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
    
     NSMutableDictionary *DictContact = arrTemp[indexPath.row];
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(12.5, 12.5, 50, 50)];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
     imgView.image = [UIImage imageNamed:[DictContact valueForKey:@"Profile"]];
-    imgView.layer.cornerRadius = 25;
+    imgView.layer.cornerRadius = 22.5;
     imgView.layer.masksToBounds = YES;
     
-    UIImageView *imgChat = [[UIImageView alloc] initWithFrame:CGRectMake(10, 50, 10, 10)];
+    UIImageView *imgChat = [[UIImageView alloc] initWithFrame:CGRectMake(0, 35, 11, 11)];
     imgChat.backgroundColor = [UIColor colorWithRed:255/255.0 green:184/255.0 blue:165/255.0 alpha:1.0];
-    imgChat.layer.cornerRadius = 5;
+    imgChat.layer.cornerRadius = 5.5;
     imgChat.layer.masksToBounds = YES;
+    imgChat.layer.borderWidth = 2;
+    imgChat.layer.borderColor = UIColor.whiteColor.CGColor;
     
     [cell.contentView addSubview:imgView];
     [cell.contentView addSubview:imgChat];
@@ -120,16 +123,51 @@ NSArray *arrTemp;
     cell.lblContactName.text = [DictContact valueForKey:@"Name"];
     cell.lblContactMsg.text = [DictContact valueForKey:@"Msg"];
     cell.lblTime.text = [DictContact valueForKey:@"Time"];
-    [cell.imgContact setFrame:CGRectMake(20, 10, 50, 50)];
-    cell.imgContact.layer.cornerRadius = 25;
+    [cell.imgContact setFrame:CGRectMake(20, 13, 45, 45)];
+    cell.imgContact.layer.cornerRadius = 22.5;
     cell.imgContact.layer.masksToBounds = YES;
     cell.imgContact.image = [UIImage imageNamed:[DictContact valueForKey:@"Profile"]];
     
-    UIImageView *imgChat = [[UIImageView alloc] initWithFrame:CGRectMake(18, 45, 10, 10)];
+    UIImageView *imgChat = [[UIImageView alloc] initWithFrame:CGRectMake(18, 45, 11, 11)];
     imgChat.backgroundColor = [UIColor colorWithRed:255/255.0 green:184/255.0 blue:165/255.0 alpha:1.0];
-    imgChat.layer.cornerRadius = 5;
+    imgChat.layer.cornerRadius = 5.5;
     imgChat.layer.masksToBounds = YES;
+    imgChat.layer.borderWidth = 2;
+    imgChat.layer.borderColor = UIColor.whiteColor.CGColor;
     [cell.contentView addSubview:imgChat];
+    
+    if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 4)
+    {
+        [imgChat setHidden:NO];
+        cell.imgCountBG.image = nil;
+        cell.imgCountBG.backgroundColor = [UIColor colorWithRed:255/255.0 green:191/255.0 blue:173/255.0 alpha:1.0];
+        [cell.lblCount setHidden:NO];
+        
+        switch (indexPath.row) {
+            case 0:
+                cell.lblContactMsg.textColor = [UIColor colorWithRed:147/255.0 green:175/255.0 blue:255/255.0 alpha:1.0];
+                break;
+                
+            case 1:
+                cell.lblContactMsg.textColor = [UIColor colorWithRed:75/255.0 green:75/255.0 blue:75/255.0 alpha:1.0];
+                break;
+                
+            case 4:
+                cell.lblContactMsg.textColor = [UIColor colorWithRed:75/255.0 green:75/255.0 blue:75/255.0 alpha:1.0];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    else
+    {
+        [imgChat setHidden:YES];
+        cell.lblContactMsg.textColor = [UIColor lightGrayColor];
+        cell.imgCountBG.backgroundColor = [UIColor whiteColor];
+        cell.imgCountBG.image = [UIImage imageNamed:@"check.png"];
+        [cell.lblCount setHidden:YES];
+    }
     
     return cell;
 
